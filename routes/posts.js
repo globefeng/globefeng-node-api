@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var Post = require("../models/post");
+var { Post } = require("../mongodb");
 
 router.get("/", function(req, res) {
     Post.find().then(data => {

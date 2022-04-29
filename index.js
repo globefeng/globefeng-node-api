@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const pgClient = require("./postgres");
+
 require('dotenv/config');
 
 const app = express()
@@ -28,6 +30,12 @@ app.get('/', (req, res) => {
 mongoose.connect("mongodb+srv://MongoFeng:Mongo_2022@cluster0.0xjvk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", () => {
   console.log('Connected to MongoDB')
 });
+
+pgClient.connect().then(res => {
+  console.log("postgres database connected");
+}).catch(err => {
+  console.log(err);
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
