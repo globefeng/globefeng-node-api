@@ -1,6 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 const mongoose = require('mongoose');
 const pgClient = require("./postgres");
 
@@ -22,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/users", usersRouter);
 app.use("/books", booksRouter);
 app.use("/posts", postsRouter);
+
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (req, res) => {  
   res.send('NodeJS web api is started!')
