@@ -14,6 +14,20 @@ var path = require('path');
 var usersRouter = require("./routes/users");
 var booksRouter = require("./routes/books");
 var postsRouter = require("./routes/posts");
+	
+var requestIp = require('request-ip');
+
+const logRequestStart = (req, res, next) => {
+  console.log(`from: ${req.hostname} ${req.originalUrl}`) 
+  console.log(requestIp.getClientIp(req));
+  
+  res.on('finish', () => {
+      console.info(`${res.statusCode} ${res.statusMessage}; ${res.get('Content-Length') || 0}b sent`)
+  })
+  next()
+}
+
+app.use(logRequestStart);
 
 app.use(cors());
 
