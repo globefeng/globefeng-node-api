@@ -18,8 +18,7 @@ var postsRouter = require("./routes/posts");
 var requestIp = require('request-ip');
 
 const logRequestStart = (req, res, next) => {
-  console.log(`from: ${req.hostname} ${req.originalUrl}`) 
-  console.log(requestIp.getClientIp(req));
+  console.log(`${req.url} ${requestIp.getClientIp(req)} ${Date.now().toString()}`) 
   
   res.on('finish', () => {
       console.info(`${res.statusCode} ${res.statusMessage}; ${res.get('Content-Length') || 0}b sent`)
