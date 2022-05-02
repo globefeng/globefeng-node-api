@@ -17,7 +17,7 @@ var postsRouter = require("./routes/posts");
 	
 var requestIp = require('request-ip');
 
-const logRequestStart = (req, res, next) => {
+const requestLogger = (req, res, next) => {
   console.log(`${req.url} ${requestIp.getClientIp(req)} ${Date.now().toString()}`) 
   
   res.on('finish', () => {
@@ -26,7 +26,7 @@ const logRequestStart = (req, res, next) => {
   next()
 }
 
-app.use(logRequestStart);
+app.use(requestLogger);
 
 app.use(cors());
 

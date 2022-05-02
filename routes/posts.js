@@ -1,8 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var { Post } = require("../mongodb");
+const auth = require("../middleware/auth");
 
-router.get("/", function(req, res) {
+router.get("/", auth, function(req, res) {
     Post.find().then(data => {
         res.json(data);
     }).catch(err => {
