@@ -65,8 +65,8 @@ router.post("/login", function(req, res) {
         } else {
             res.status(500).send("Invalid username and password");
         }
+        pgClient.end();
     })
-    pgClient.end;
 });
 
 router.post("/register", function(req, res) {
@@ -78,8 +78,8 @@ router.post("/register", function(req, res) {
         if (!err && results.rows.length > 0) {
             res.status(500).send("user is already registered");
         }
+        pgClient.end();
     })
-    pgClient.end;
 
     let insertQuery = `INSERT INTO users (name, password) values ('${user.name}', '${user.password}')`;
 
@@ -90,8 +90,8 @@ router.post("/register", function(req, res) {
         } else {
             res.status(500).send("Fail to save the user");
         }
+        pgClient.end();
     })
-    pgClient.end;
 });
 
 

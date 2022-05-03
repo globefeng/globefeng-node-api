@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
   res.send('NodeJS web api is started!')
 })
 
-mongoose.connect("mongodb+srv://MongoFeng:Mongo_2022@cluster0.0xjvk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", () => {
+mongoose.connect(process.env.MONGODB_CONNECTION, () => {
   console.log('Connected to MongoDB')
 });
 
