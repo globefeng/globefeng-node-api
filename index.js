@@ -41,7 +41,7 @@ app.use("/posts", postsRouter);
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (req, res) => {  
-  res.send('NodeJS web api is started!')
+  res.send('Feng\'s NodeJS web api is started!')
 })
 
 mongoose.connect(process.env.MONGODB_CONNECTION, () => {
