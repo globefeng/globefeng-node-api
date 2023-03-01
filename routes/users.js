@@ -28,7 +28,7 @@ router.get("/:id", function(req, res) {
 
 router.post("/", function(req, res) {
     const user = req.body;
-    let insertQuery = `INSERT INTO users (name, password) values ('${user.name}', '${user.password}')`;
+    let insertQuery = `INSERT INTO users (id, name, password) values ('${user.id}', '${user.name}', '${user.password}')`;
     console.log(insertQuery);
 
     pgClient.query(insertQuery, (err, results) => {
